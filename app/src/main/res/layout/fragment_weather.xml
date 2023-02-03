@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.munene.haliyahewa.ui.weather.WeatherViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".ui.current.WeatherFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            style="?toolbarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="360dp"
+            android:fitsSystemWindows="true"
+            app:liftOnScroll="true">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                style="?toolbarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                app:expandedTitleGravity="center|top"
+                app:titleEnabled="false"
+                app:weatherScrim="@{viewModel.currentWeather.weatherId}">
+
+                <ImageView
+                    android:id="@+id/weatherCondition"
+                    android:layout_width="match_parent"
+                    android:layout_height="360dp"
+                    android:contentDescription="@string/today_weather"
+                    android:elevation="@dimen/zero"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="fitXY"
+                    app:weatherImage="@{viewModel.currentWeather.weatherId}"
+                    tools:src="@drawable/sea_cloudy" />
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/expanded_toolbar"
+                    style="?toolbarStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:background="@android:color/transparent"
+                    android:elevation="@dimen/zero"
+                    app:layout_collapseMode="pin" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="@dimen/list_two_liner_size">
+
+                    <TextView
+                        android:id="@+id/current_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="?alphaEmphasisHigh"
+                        android:text="@{viewModel.currentWeather.addressName}"
+                        android:textAppearance="?textAppearanceHeadline4"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@tools:sample/cities" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="@dimen/list_expanded_size"
+                    android:layout_marginBottom="@dimen/standard_touch_size">
+
+                    <TextView
+                        android:id="@+id/current_temperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:textAppearance="?textAppearanceHeadline3"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:temperature="@{viewModel.currentWeather.temp}"
+                        tools:text="@string/empty" />
+
+                    <TextView
+                        android:id="@+id/current_weather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="@{viewModel.currentWeather.weather}"
+                        android:textAppearance="?textAppearanceHeadline4"
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/current_temperature"
+                        tools:text="Clouds" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginTop="@dimen/margin_padding_size_small"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/current_weather">
+
+                        <TextView
+                            android:id="@+id/tvHigh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/high"
+                            android:textAppearance="?textAppearanceHeadline4"
+                            android:textColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/tvHighTemp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tvHighTemp" />
+
+                        <TextView
+                            android:id="@+id/tvHighTemp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAllCaps="true"
+                            android:textAppearance="?textAppearanceHeadline4"
+                            android:textColor="@color/white"
+                            app:layout_constraintEnd_toStartOf="@+id/tvLow"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tvLow"
+                            app:temperature="@{viewModel.currentWeather.tempMax}"
+                            tools:text="24" />
+
+                        <TextView
+                            android:id="@+id/tvLow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/low"
+                            android:textAppearance="?textAppearanceHeadline4"
+                            android:textColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/tvLowTemp"
+                            app:layout_constraintTop_toTopOf="@+id/tvLowTemp" />
+
+                        <TextView
+                            android:id="@+id/tvLowTemp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAllCaps="true"
+                            android:textAppearance="?textAppearanceHeadline4"
+                            android:textColor="@color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:temperature="@{viewModel.currentWeather.tempMax}"
+                            tools:text="15" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/last_updated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|start"
+                    android:layout_marginStart="@dimen/keyline_4"
+                    android:layout_marginBottom="@dimen/keyline_2"
+                    android:alpha="?alphaEmphasisHigh"
+                    android:textAppearance="?textAppearanceOverline"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:lastUpdate="@{viewModel.currentWeather.lastUpdate}"
+                    tools:text="@tools:sample/date/mmddyy" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            app:weatherBackground="@{viewModel.currentWeather.weatherId}">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/weather_forecast"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:forecast="@{viewModel.forecast}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="6"
+                tools:listitem="@layout/item_forecast" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

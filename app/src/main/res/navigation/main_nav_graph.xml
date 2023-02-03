@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph.xml"
+    app:startDestination="@id/currentWeather">
+
+    <fragment
+        android:id="@+id/currentWeather"
+        android:name="com.munene.haliyahewa.ui.weather.WeatherFragment"
+        android:label=""
+        tools:layout="@layout/fragment_weather">
+
+        <action
+            android:id="@+id/action_currentWeather_to_favorites"
+            app:destination="@id/favouritesFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/favouritesFragment"
+        android:name="com.munene.haliyahewa.ui.favourites.FavouritesFragment"
+        android:label="@string/favourite_locations"
+        tools:layout="@layout/fragment_favourites">
+        <action
+            android:id="@+id/action_favouritesFragment_to_favouriteForecastFragment"
+            app:destination="@id/favouriteForecastFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/favouriteForecastFragment"
+        android:name="com.munene.haliyahewa.ui.favourites.FavouritesForecastFragment"
+        android:label="@string/favourite_locations"
+        tools:layout="@layout/fragment_favourite_forecast">
+
+        <argument
+            android:name="favourite"
+            app:argType="com.munene.haliyahewa.data.db.entities.Favorite" />
+
+    </fragment>
+
+</navigation>
