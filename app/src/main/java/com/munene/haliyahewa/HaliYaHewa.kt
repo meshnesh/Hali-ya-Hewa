@@ -6,7 +6,6 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import com.cioccarellia.ksprefs.BuildConfig
 import com.google.android.libraries.places.api.Places
-import com.munene.haliyahewa.BuildConfig.GOOGLE_MAPS_API_KEY
 import com.munene.haliyahewa.data.datastore.HaliYaHewaStore
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
@@ -23,8 +22,8 @@ class HaliYaHewa : Application(), Configuration.Provider {
         HaliYaHewaStore.init(applicationContext)
         initTimberDebugTree()
 
-        // Initialize the SDK with the Google Maps Platform API key
-        Places.initialize(this, GOOGLE_MAPS_API_KEY)
+        // Initialize the SDK with the Google Maps Platform API key can be import from the BuildConfig
+        Places.initialize(this, "AIzaSyAq-VfBoQCTHVyeIORDXOrlY4JXH0yrZc4")
     }
 
     /** Initialize Timber debug tree. */
