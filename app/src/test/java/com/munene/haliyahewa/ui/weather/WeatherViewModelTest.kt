@@ -2,7 +2,6 @@ package com.munene.haliyahewa.ui.weather
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.dvttest.hiweather.testutils.getOrAwaitValue
 import com.google.common.truth.Truth.assertThat
 import com.munene.haliyahewa.api.LiveResource
 import com.munene.haliyahewa.api.usecases.LocationForecastUseCase
@@ -13,6 +12,7 @@ import com.munene.haliyahewa.fakeForecast
 import com.munene.haliyahewa.fakeUserLocation
 import com.munene.haliyahewa.fakeWeather
 import com.munene.haliyahewa.testutils.CoroutinesTestRule
+import com.munene.haliyahewa.testutils.getOrAwaitValue
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

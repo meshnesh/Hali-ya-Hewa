@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dvttest.hiweather.testutils
+package com.munene.haliyahewa.testutils
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
